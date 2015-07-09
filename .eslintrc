@@ -1,0 +1,17 @@
+{
+  "rules": {
+    "quotes": [1, "single"],
+    "no-underscore-dangle": 0,
+    "no-extra-boolean-cast": 0
+  },
+  "globals": {
+    "angular": true,
+    "_": true,
+    "spark": true,
+    "window": true,
+    "cordova": true
+  },
+  "env": {
+    "node": true
+  }
+}
