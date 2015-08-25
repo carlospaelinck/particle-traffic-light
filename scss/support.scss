@@ -1,0 +1,6 @@
+@mixin svg-image($image, $width, $height) {
+  background-image: url('../img/#{$image}.svg');
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
+}

@@ -1,4 +1,9 @@
 {
   "name": "trafficLight",
-  "app_id": ""
+  "app_id": "",
+  "gulpStartupTasks": [
+    "babel",
+    "sass",
+    "watch"
+  ]
 }
