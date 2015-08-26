@@ -16,6 +16,7 @@ function appConfiguration($stateProvider, $urlRouterProvider) {
     .state('tab', {
       url: '/tab',
       abstract: true,
+      controller: 'TabController as tabController',
       templateUrl: 'templates/tabs.html'
     })
       .state('tab.dashboard', {

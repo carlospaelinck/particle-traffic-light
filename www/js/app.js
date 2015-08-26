@@ -75,6 +75,7 @@
 	  $stateProvider.state('tab', {
 	    url: '/tab',
 	    abstract: true,
+	    controller: 'TabController as tabController',
 	    templateUrl: 'templates/tabs.html'
 	  }).state('tab.dashboard', {
 	    url: '/dashboard',
@@ -128,6 +129,10 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
+	var _controllersTabController = __webpack_require__(9);
+
+	var _controllersTabController2 = _interopRequireDefault(_controllersTabController);
+
 	var _controllersActionController = __webpack_require__(3);
 
 	var _controllersActionController2 = _interopRequireDefault(_controllersActionController);
@@ -136,7 +141,7 @@
 
 	var _controllersDashboardController2 = _interopRequireDefault(_controllersDashboardController);
 
-	exports['default'] = angular.module('lightApp.controllers', []).controller('ActionController', _controllersActionController2['default']).controller('DashboardController', _controllersDashboardController2['default']);
+	exports['default'] = angular.module('lightApp.controllers', []).controller('TabController', _controllersTabController2['default']).controller('ActionController', _controllersActionController2['default']).controller('DashboardController', _controllersDashboardController2['default']);
 	module.exports = exports['default'];
 
 /***/ },
@@ -12691,6 +12696,63 @@
 	})();
 
 	exports['default'] = ParticleService;
+	module.exports = exports['default'];
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * LightApp
+	 * Tab Controller
+	 * Carlos Paelinck
+	 */
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	var _lodash = __webpack_require__(4);
+
+	var TabController = (function () {
+	  function TabController() {
+	    _classCallCheck(this, TabController);
+
+	    (0, _lodash.assign)(this, {});
+	    this.createTabIcons();
+	  }
+
+	  _createClass(TabController, [{
+	    key: 'createTabIcons',
+	    value: function createTabIcons() {
+	      if (ionic.Platform.isAndroid()) {
+	        this.tabIcons = {
+	          dashboardOn: 'ion-android-bulb',
+	          dashboardOff: 'ion-android-bulb',
+	          actionOn: 'ion-android-options',
+	          actionOff: 'ion-android-options'
+	        };
+	      } else {
+	        this.tabIcons = {
+	          dashboardOn: 'ion-ios-lightbulb',
+	          dashboardOff: 'ion-ios-lightbulb-outline',
+	          actionOn: 'ion-ios-toggle',
+	          actionOff: 'ion-ios-toggle-outline'
+	        };
+	      }
+	    }
+	  }]);
+
+	  return TabController;
+	})();
+
+	exports['default'] = TabController;
 	module.exports = exports['default'];
 
 /***/ }
