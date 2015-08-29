@@ -1,7 +1,7 @@
 {
-  "name": "trafficlight",
+  "name": "lightApp",
   "version": "1.0.0",
-  "description": "trafficLight: An Ionic project",
+  "description": "LightApp: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",

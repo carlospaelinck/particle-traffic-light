@@ -1,16 +1,57 @@
 <ion-view view-title="Overview">
-  <ion-nav-buttons side="secondary">
-      <!-- <button class="button button-icon ion-ios-cog-outline" ng-click="dashboardController.connectToDevice()"></button> -->
-    </ion-nav-buttons>
-  <ion-content>
-    <div ng-if="!dashboardController.isDeviceConnected">
-      <div class="light-img"></div>
-      <button
-        class="button button-calm button-full"
-        ng-click="dashboardController.connectToDevice()">
-        Connect to Particle
-      </button>
+  <ion-content class="dashboard-view-content">
+    <div class="light-img">
+      <svg width="80px" height="236px" viewBox="0 0 80 236" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+        <g id="traffic_light_none" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)">
+          <rect id="frame" stroke="#CFD8DC" stroke-width="2" sketch:type="MSShapeGroup" x="0" y="0" width="78" height="233.179427" rx="4"></rect>
+          <path id="red-oval" ng-attr-fill="{{dashboardController.lightSVGColors.red}}" stroke="#000" stroke-opacity="0.15" d="M15.2265824,63.8373739 C21.3107305,70.0246432 29.7159029,73.8515488 39,73.8515488 C48.2840971,73.8515488 56.6892695,70.0246432 62.7734176,63.8373739 C68.8575658,57.6501046 72.6206897,49.1024716 72.6206897,39.6610169 C72.6206897,20.7781076 57.5681942,5.4704851 39,5.4704851 C20.4318058,5.4704851 5.37931034,20.7781076 5.37931034,39.6610169 C5.37931034,49.1024716 9.14243422,57.6501046 15.2265824,63.8373739 Z" sketch:type="MSShapeGroup"></path>
+          <path d="M62.7734176,63.8373739 C68.8575658,57.6501046 72.6206897,49.1024716 72.6206897,39.6610169 C72.6206897,20.7781076 57.5681942,5.4704851 39,5.4704851 C20.4318058,5.4704851 5.37931034,20.7781076 5.37931034,39.6610169 C5.37931034,49.1024716 9.14243422,57.6501046 15.2265824,63.8373739 L15.2265824,63.8373739" id="Oval-1" stroke-opacity="0.141615716" stroke="#000000" stroke-width="4" sketch:type="MSShapeGroup"></path>
+          <path id="yellow-oval" ng-attr-fill="{{dashboardController.lightSVGColors.yellow}}" stroke="#000" stroke-opacity="0.15" d="M15.2265824,141.107976 C21.3107305,147.295245 29.7159029,151.122151 39,151.122151 C48.2840971,151.122151 56.6892695,147.295245 62.7734176,141.107976 C68.8575658,134.920707 72.6206897,126.373074 72.6206897,116.931619 C72.6206897,98.0487096 57.5681942,82.7410871 39,82.7410871 C20.4318058,82.7410871 5.37931034,98.0487096 5.37931034,116.931619 C5.37931034,126.373074 9.14243422,134.920707 15.2265824,141.107976 Z" sketch:type="MSShapeGroup"></path>
+          <path d="M62.7734176,141.107976 C68.8575658,134.920707 72.6206897,126.373074 72.6206897,116.931619 C72.6206897,98.0487096 57.5681942,82.7410871 39,82.7410871 C20.4318058,82.7410871 5.37931034,98.0487096 5.37931034,116.931619 C5.37931034,126.373074 9.14243422,134.920707 15.2265824,141.107976 L15.2265824,141.107976" id="Oval-1" stroke-opacity="0.141615716" stroke="#000000" stroke-width="4" sketch:type="MSShapeGroup"></path>
+          <path id="green-oval" ng-attr-fill="{{dashboardController.lightSVGColors.green}}" stroke="#000" stroke-opacity="0.15" d="M15.2265824,218.378578 C21.3107305,224.565847 29.7159029,228.392753 39,228.392753 C48.2840971,228.392753 56.6892695,224.565847 62.7734176,218.378578 C68.8575658,212.191309 72.6206897,203.643676 72.6206897,194.202221 C72.6206897,175.319312 57.5681942,160.011689 39,160.011689 C20.4318058,160.011689 5.37931034,175.319312 5.37931034,194.202221 C5.37931034,203.643676 9.14243422,212.191309 15.2265824,218.378578 Z" sketch:type="MSShapeGroup"></path>
+          <path d="M62.7734176,218.378578 C68.8575658,212.191309 72.6206897,203.643676 72.6206897,194.202221 C72.6206897,175.319312 57.5681942,160.011689 39,160.011689 C20.4318058,160.011689 5.37931034,175.319312 5.37931034,194.202221 C5.37931034,203.643676 9.14243422,212.191309 15.2265824,218.378578 L15.2265824,218.378578" id="Oval-1" stroke-opacity="0.141615716" stroke="#000000" stroke-width="4" sketch:type="MSShapeGroup"></path>
+          <path d="M0.4875,77.5 L77.5125,77.5" id="Line" stroke="#CFD8DC" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+          <path d="M0.4875,155.5 L77.5125,155.5" id="Line-2" stroke="#CFD8DC" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        </g>
+      </svg>
     </div>
+    <div class="status-message">
+      {{dashboardController.connectionStatus}}
+    </div>
+    <button
+      class="button button-full button-positive"
+      ng-if="dashboardController.connectionStatus === dashboardController.ParticleConnectionStatus.NotConnected"
+      ng-click="dashboardController.connectToDevice()">
+      Connect to Light Device
+    </button>
+    <div
+      ng-if="dashboardController.connectionStatus === dashboardController.ParticleConnectionStatus.Connected">
+      <button
+        class="button button-full button-stable"
+        ng-click="dashboardController.toggleLight('red')">
+        Red
+      </button>
+      <button
+        class="button button-full button-stable"
+        ng-click="dashboardController.toggleLight('yellow')">
+        Yellow
+      </button>
+      <button
+        class="button button-full button-stable"
+        ng-click="dashboardController.toggleLight('green')">
+        Green
+      </button>
+      <button
+        class="button button-full button-stable"
+        ng-click="dashboardController.resetLights()">
+        Reset
+      </button>
+      <button
+        class="button button-full button-stable"
+        ng-click="dashboardController.lightSequence()">
+        Sequence
+      </button>
 
+    </div>
   </ion-content>
 </ion-view>

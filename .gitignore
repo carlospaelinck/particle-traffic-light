@@ -24,8 +24,14 @@ build/Release
 
 # Ignore Bower Components
 www/lib
+www/js/app.js
 
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
 platforms
+plugins/cordova-plugin-console
+plugins/cordova-plugin-device
+plugins/cordova-plugin-splashscreen
+plugins/com.ionic.keyboard
+plugins/cordova-plugin-whitelist

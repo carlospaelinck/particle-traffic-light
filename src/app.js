@@ -36,6 +36,15 @@ function appConfiguration($stateProvider, $urlRouterProvider) {
             templateUrl: 'templates/tab.action.html'
           }
         }
+      })
+      .state('tab.manualAction', {
+        url: '/manual',
+        views: {
+          'tab-action' : {
+            controller: 'ManualActionController as manualActionController',
+            templateUrl: 'templates/tab.action.manual.html'
+          }
+        }
       });
 
   $urlRouterProvider.otherwise('/tab/dashboard');
