@@ -1,13 +1,13 @@
 <ion-tabs class="tabs-icon-top">
-  <ion-tab title="Overview"
+  <ion-tab title="{{'titleDashboard' | translate}}"
     icon-off="{{this.tabController.tabIcons.dashboardOff}}"
     icon-on="{{this.tabController.tabIcons.dashboardOn}}"
     href="#/tab/dashboard">
     <ion-nav-view name="tab-dashboard"></ion-nav-view>
   </ion-tab>
-  <ion-tab title="Action"
+  <ion-tab title="{{'titleAction' | translate}}"
     icon-off="{{this.tabController.tabIcons.actionOff}}"
-    icon-on="{{this.tabController.tabIcons.actionOn}}" 
+    icon-on="{{this.tabController.tabIcons.actionOn}}"
     href="#/tab/action">
     <ion-nav-view name="tab-action"></ion-nav-view>
   </ion-tab>

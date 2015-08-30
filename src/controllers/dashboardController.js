@@ -6,10 +6,11 @@
 
 import {assign, bind} from 'lodash';
 import {ParticleConnectionStatus} from '../services/particleService';
+import {Colors} from '../common/constants';
 
 export default class DashboardController {
-  constructor($interval, $scope, ParticleService) {
-    assign(this, {$interval, $scope, ParticleService, ParticleConnectionStatus});
+  constructor($ionicLoading, $interval, $scope, $translate, ParticleService) {
+    assign(this, {$ionicLoading, $interval, $scope, $translate, ParticleService, ParticleConnectionStatus});
     this.updateStatusSignal = this.updateStatusSignal.bind(this);
     this.connectToDevice();
     this.resetStatusSingal();
@@ -17,6 +18,10 @@ export default class DashboardController {
 
   connectToDevice() {
     this.connectionStatus = ParticleConnectionStatus.Pending;
+
+    this.$ionicLoading.show({
+      template: `{{'messageConnecting' | translate}}`
+    });
 
     this.ParticleService.login().then(() => {
       return this.ParticleService.connectToDevice();
@@ -27,23 +32,26 @@ export default class DashboardController {
 
     }).catch(() => {
       this.connectionStatus = ParticleConnectionStatus.NotConnected;
+
+    }).finally(() => {
+      this.$ionicLoading.hide();
     });
   }
 
   resetStatusSingal() {
     this.lightSVGColors = {
-      red: '#fff',
-      yellow: '#fff',
-      green: '#fff'
+      red: Colors.Transparent,
+      yellow: Colors.Transparent,
+      green: Colors.Transparent
     };
   }
 
   updateStatusSignal(sender) {
     this.$scope.$apply(() => {
       this.lightSVGColors = {
-        red: `${sender.red ? '#ff0000' : '#fff'}`,
-        yellow: `${sender.yellow ? '#ffff00' : '#fff'}`,
-        green: `${sender.green ? '#00ff00' : '#fff'}`
+        red: `${sender.red ? Colors.Red : Colors.Transparent}`,
+        yellow: `${sender.yellow ? Colors.Yellow : Colors.Transparent}`,
+        green: `${sender.green ? Colors.Green : Colors.Transparent}`
       };
     });
   }

@@ -1,4 +1,4 @@
-<ion-view view-title="Overview">
+<ion-view view-title="{{'titleDashboard' | translate}}">
   <ion-content class="dashboard-view-content">
     <div class="light-img">
       <svg width="80px" height="236px" viewBox="0 0 80 236" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
@@ -15,16 +15,20 @@
         </g>
       </svg>
     </div>
-    <div class="status-message">
+    <!-- <div class="status-message">
       {{dashboardController.connectionStatus}}
-    </div>
+    </div> -->
     <button
       class="button button-full button-positive"
       ng-if="dashboardController.connectionStatus === dashboardController.ParticleConnectionStatus.NotConnected"
       ng-click="dashboardController.connectToDevice()">
-      Connect to Light Device
+      {{'buttonConnectTo' | translate}}
     </button>
     <div
+      ng-if="dashboardController.connectionStatus === dashboardController.ParticleConnectionStatus.Connected">
+      {{'messageConnected' | translate}}
+    </div>
+    <!-- <div
       ng-if="dashboardController.connectionStatus === dashboardController.ParticleConnectionStatus.Connected">
       <button
         class="button button-full button-stable"
@@ -50,7 +54,7 @@
         class="button button-full button-stable"
         ng-click="dashboardController.lightSequence()">
         Sequence
-      </button>
+      </button> -->
 
     </div>
   </ion-content>

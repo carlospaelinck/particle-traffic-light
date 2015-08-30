@@ -7700,10 +7700,16 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.nav-icon-right-small {
+  font-size: 20px !important; }
+
 .light-img {
+  border-bottom: 1px solid #ccc;
   display: block;
-  margin: 3em auto;
+  margin: auto;
   text-align: center; }
+  .light-img svg {
+    margin: 3em auto; }
 
 .dashboard-view-content .status-message {
   color: #424242;

@@ -4,7 +4,7 @@
  * Carlos Paelinck
  */
 
-import {assign, isFunction, keys, noop} from 'lodash';
+import {assign, isFunction, isString, keys, noop} from 'lodash';
 
 const LightBitMask = {
   Red:    1 << 1,
@@ -13,9 +13,9 @@ const LightBitMask = {
 };
 
 const ParticleConnectionStatus = {
-  Pending: 'Connecting to Light Device',
-  Connected: 'Connected',
-  NotConnected: 'Not Connected'
+  Pending: 1,
+  Connected: 2,
+  NotConnected: 3
 };
 
 class ParticleService {
@@ -95,7 +95,9 @@ class ParticleService {
     };
 
     this.connectedDevice.getVariable('lightstatus', (err, data) => {
-      this.updateLightStatus(data.result);
+      if (isString(data.result)) {
+        this.updateLightStatus(data.result);
+      }
     });
   }
 

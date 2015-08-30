@@ -1,9 +1,11 @@
-<ion-view view-title="Action">
+<ion-view view-title="{{'titleAction' | translate}}">
   <ion-content>
     <ion-list>
-      <ion-item ui-sref="tab.manualAction()">
-        Manual Action
-      </ion-item>
+      <a class="item item-icon-right" ui-sref="tab.manualAction()" href="#">
+        <h2>Manual Actions</h2>
+        <p>Toggle light segments individually</p>
+        <i class="icon {{actionController.icons.chevron}} nav-icon-right-small"></i>
+      </a>
     </ion-list>
   </ion-content>
 </ion-view>

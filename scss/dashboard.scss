@@ -1,7 +1,12 @@
 .light-img {
+  background: ;
   display: block;
-  margin: 3em auto;
+  margin: auto;
   text-align: center;
+
+  svg {
+    margin: 3em auto;
+  }
 }
 
 .dashboard-view-content {
