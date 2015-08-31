@@ -6,11 +6,11 @@
 
 import ActionController from './controllers/actionController';
 import DashboardController from './controllers/dashboardController';
-import ManualActionController from './controllers/manualActionController';
+import LightActionsController from './controllers/lightActionController';
 import TabController from './controllers/tabController';
 
 export default angular.module('lightApp.controllers', [])
   .controller('ActionController', ActionController)
   .controller('DashboardController', DashboardController)
-  .controller('ManualActionController', ManualActionController)
+  .controller('LightActionsController', LightActionsController)
   .controller('TabController', TabController);

@@ -7704,16 +7704,18 @@ a.button {
   font-size: 20px !important; }
 
 .light-img {
-  border-bottom: 1px solid #ccc;
+  background: #fff;
   display: block;
   margin: auto;
   text-align: center; }
   .light-img svg {
-    margin: 3em auto; }
+    margin: 2em auto; }
 
 .dashboard-view-content .status-message {
-  color: #424242;
-  font-size: 1.1em;
+  border-bottom: 1px solid #e5e5e5;
+  color: #37474F;
+  font-size: 1.05em;
   font-weight: 500;
-  margin: 0 0 2.5em 0;
+  height: 50px;
+  line-height: 50px;
   text-align: center; }

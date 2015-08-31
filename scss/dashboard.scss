@@ -1,20 +1,22 @@
 .light-img {
-  background: ;
+  background: #fff;
   display: block;
   margin: auto;
   text-align: center;
 
   svg {
-    margin: 3em auto;
+    margin: 2em auto;
   }
 }
 
 .dashboard-view-content {
   .status-message {
+    border-bottom: 1px solid #e5e5e5;
     color: $color-text;
-    font-size: 1.1em;
+    font-size: 1.05em;
     font-weight: 500;
-    margin: 0 0 2.5em 0;
+    height: 50px;
+    line-height: 50px;
     text-align: center;
   }
 }

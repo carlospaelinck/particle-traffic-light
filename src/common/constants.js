@@ -14,15 +14,17 @@ const AppConstants = {
   Translations: {
     EN: {
       buttonConnectTo: 'Connect to Light',
-      messageConnected: 'Connected',
+      messageConnected: 'Connected to',
       messageConnecting: 'Connecting to Light',
+      messageNotConnected: 'Not Connected',
       titleDashboard: 'Dashboard',
       titleAction: 'Action'
     },
     ES: {
       buttonConnectTo: 'Conectar a la Luz',
-      messageConnected: 'Conectado',
+      messageConnected: 'Conectado a',
       messageConnecting: 'Connecting to Light',
+      messageNotConnected: 'Not Connected',
       titleDashboard: 'Tabla de Estado',
       titleAction: 'Acción'
     }

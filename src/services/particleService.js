@@ -4,7 +4,7 @@
  * Carlos Paelinck
  */
 
-import {assign, isFunction, isString, keys, noop} from 'lodash';
+import {assign, isFunction, keys, noop} from 'lodash';
 
 const LightBitMask = {
   Red:    1 << 1,
@@ -12,23 +12,26 @@ const LightBitMask = {
   Green:  1 << 3
 };
 
-const ParticleConnectionStatus = {
-  Pending: 1,
-  Connected: 2,
-  NotConnected: 3
-};
-
 class ParticleService {
   constructor($rootScope, $q) {
     assign(this, {$rootScope, $q});
     this.connectedDevice = null;
-    this.signalCallback = null;
   }
 
   login() {
     return this.$q.when(spark.login({
       accessToken: '16a0d7ed246856bbdc39dc1b8c16c5b670fc6526'
     }));
+  }
+
+  addEventListener(eventListener) {
+    this.$rootScope.$on('particleStateChanged', (event, data) => {
+      eventListener(data);
+    });
+  }
+
+  emitChange() {
+    this.$rootScope.$emit('particleStateChanged', this.lights);
   }
 
   isConnected() {
@@ -56,22 +59,18 @@ class ParticleService {
     });
   }
 
-  toggleLight(pin) {
+  toggleLight(color) {
     if (!this.connectedDevice) return;
 
-    let signal = this.lights[pin];
+    let signal = this.lights[color];
 
-    this.connectedDevice.callFunction('togglelight', pin, () => {
-      this.lights[pin] = !signal;
-      this.signalCallback(this.lights);
+    this.connectedDevice.callFunction('togglelight', color, () => {
+      this.lights[color] = !signal;
     });
   }
 
   lightSequence() {
     if (!this.connectedDevice) return;
-
-    // this.connectedDevice.callFunction('yellowon', null, () => {
-    // });
   }
 
   updateLightStatus(sender) {
@@ -84,7 +83,7 @@ class ParticleService {
     this.lights.yellow = yellowStatus;
     this.lights.green = greenStatus;
 
-    this.signalCallback(this.lights);
+    this.emitChange();
   }
 
   fetchLightStatus() {
@@ -95,7 +94,7 @@ class ParticleService {
     };
 
     this.connectedDevice.getVariable('lightstatus', (err, data) => {
-      if (isString(data.result)) {
+      if (data.result) {
         this.updateLightStatus(data.result);
       }
     });
@@ -111,9 +110,9 @@ class ParticleService {
     };
 
     this.connectedDevice.callFunction('resetLights', null, () => {
-      this.signalCallback(this.lights);
+      this.emitChange();
     });
   }
 }
 
-export default {ParticleService, ParticleConnectionStatus, LightBitMask};
+export default {ParticleService, LightBitMask};

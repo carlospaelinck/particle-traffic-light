@@ -38,12 +38,12 @@ export default function AppConfiguration($stateProvider, $urlRouterProvider, $tr
           }
         }
       })
-      .state('tab.manualAction', {
-        url: '/manual',
+      .state('tab.lightActions', {
+        url: '/lightActions',
         views: {
           'tab-action' : {
-            controller: 'ManualActionController as manualActionController',
-            templateUrl: 'templates/tab.action.manual.html'
+            controller: 'LightActionsController as lightActionsController',
+            templateUrl: 'templates/tab.action.light.html'
           }
         }
       });

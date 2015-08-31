@@ -5,19 +5,20 @@
  */
 
 import {assign, bind} from 'lodash';
-import {ParticleConnectionStatus} from '../services/particleService';
 import {Colors} from '../common/constants';
 
 export default class DashboardController {
-  constructor($ionicLoading, $interval, $scope, $translate, ParticleService) {
-    assign(this, {$ionicLoading, $interval, $scope, $translate, ParticleService, ParticleConnectionStatus});
-    this.updateStatusSignal = this.updateStatusSignal.bind(this);
+  constructor($ionicLoading, $interval, $rootScope, $scope, $translate, ParticleService) {
+    assign(this, {$ionicLoading, $interval, $rootScope, $scope, $translate, ParticleService});
+    ParticleService.addEventListener(s => this.updateStatusSignal(s));
+
+    this.device = null;
     this.connectToDevice();
     this.resetStatusSingal();
   }
 
   connectToDevice() {
-    this.connectionStatus = ParticleConnectionStatus.Pending;
+    this.device = null;
 
     this.$ionicLoading.show({
       template: `{{'messageConnecting' | translate}}`
@@ -26,12 +27,8 @@ export default class DashboardController {
     this.ParticleService.login().then(() => {
       return this.ParticleService.connectToDevice();
 
-    }).then(() => {
-      this.connectionStatus = ParticleConnectionStatus.Connected;
-      this.ParticleService.signalCallback = this.updateStatusSignal;
-
-    }).catch(() => {
-      this.connectionStatus = ParticleConnectionStatus.NotConnected;
+    }).then(device => {
+      this.device = device;
 
     }).finally(() => {
       this.$ionicLoading.hide();
