@@ -16,7 +16,7 @@ export default class LightActionsController {
   }
 
   updateSignalButtons(lights) {
-    this.lights = lights;
+    assign(this.lights, lights);
   }
 
   viewWillAppear() {

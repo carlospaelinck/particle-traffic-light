@@ -1,4 +1,8 @@
-// curl -X PUT -F file=@lightAppFirmware.cpp https://api.particle.io/v1/devices/55ff70065075555324361787\?access_token\=16a0d7ed246856bbdc39dc1b8c16c5b670fc6526
+/**
+ * LightApp
+ * Particle Core Firmware App
+ * Carlos Paelinck
+ */
 
 #include "application.h"
 

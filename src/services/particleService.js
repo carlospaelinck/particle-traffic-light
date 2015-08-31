@@ -4,7 +4,7 @@
  * Carlos Paelinck
  */
 
-import {assign, isFunction, keys, noop} from 'lodash';
+import {assign, has, isFunction, keys, noop} from 'lodash';
 
 const LightBitMask = {
   Red:    1 << 1,
