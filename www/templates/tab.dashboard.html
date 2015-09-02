@@ -9,17 +9,55 @@
       </div>
     </div>
     <div class="light-img">
-      <svg width="80px" height="236px" viewBox="0 0 80 236" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-        <g id="traffic_light_none" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)">
-          <rect id="frame" stroke="#000" stroke-opacity="0.33" stroke-width="1" sketch:type="MSShapeGroup" x="-0.5" y="0.5" width="79" height="233" rx="8"></rect>
-          <path id="red-oval" ng-attr-fill="{{dashboardController.lightSVGColors.red}}" stroke="#000" stroke-opacity="0.33" d="M15.2265824,63.8373739 C21.3107305,70.0246432 29.7159029,73.8515488 39,73.8515488 C48.2840971,73.8515488 56.6892695,70.0246432 62.7734176,63.8373739 C68.8575658,57.6501046 72.6206897,49.1024716 72.6206897,39.6610169 C72.6206897,20.7781076 57.5681942,5.4704851 39,5.4704851 C20.4318058,5.4704851 5.37931034,20.7781076 5.37931034,39.6610169 C5.37931034,49.1024716 9.14243422,57.6501046 15.2265824,63.8373739 Z" sketch:type="MSShapeGroup"></path>
-          <path stroke="#000" stroke-opacity="0.2" d="M62.7734176,63.8373739 C68.8575658,57.6501046 72.6206897,49.1024716 72.6206897,39.6610169 C72.6206897,20.7781076 57.5681942,5.4704851 39,5.4704851 C20.4318058,5.4704851 5.37931034,20.7781076 5.37931034,39.6610169 C5.37931034,49.1024716 9.14243422,57.6501046 15.2265824,63.8373739 L15.2265824,63.8373739" id="Oval-1" stroke-width="4" sketch:type="MSShapeGroup"></path>
-          <path id="yellow-oval" ng-attr-fill="{{dashboardController.lightSVGColors.yellow}}" stroke="#000" stroke-opacity="0.33" d="M15.2265824,141.107976 C21.3107305,147.295245 29.7159029,151.122151 39,151.122151 C48.2840971,151.122151 56.6892695,147.295245 62.7734176,141.107976 C68.8575658,134.920707 72.6206897,126.373074 72.6206897,116.931619 C72.6206897,98.0487096 57.5681942,82.7410871 39,82.7410871 C20.4318058,82.7410871 5.37931034,98.0487096 5.37931034,116.931619 C5.37931034,126.373074 9.14243422,134.920707 15.2265824,141.107976 Z" sketch:type="MSShapeGroup"></path>
-          <path stroke="#000" stroke-opacity="0.2" d="M62.7734176,141.107976 C68.8575658,134.920707 72.6206897,126.373074 72.6206897,116.931619 C72.6206897,98.0487096 57.5681942,82.7410871 39,82.7410871 C20.4318058,82.7410871 5.37931034,98.0487096 5.37931034,116.931619 C5.37931034,126.373074 9.14243422,134.920707 15.2265824,141.107976 L15.2265824,141.107976" id="Oval-1" stroke-width="4" sketch:type="MSShapeGroup"></path>
-          <path id="green-oval" ng-attr-fill="{{dashboardController.lightSVGColors.green}}" stroke="#000" stroke-opacity="0.33" d="M15.2265824,218.378578 C21.3107305,224.565847 29.7159029,228.392753 39,228.392753 C48.2840971,228.392753 56.6892695,224.565847 62.7734176,218.378578 C68.8575658,212.191309 72.6206897,203.643676 72.6206897,194.202221 C72.6206897,175.319312 57.5681942,160.011689 39,160.011689 C20.4318058,160.011689 5.37931034,175.319312 5.37931034,194.202221 C5.37931034,203.643676 9.14243422,212.191309 15.2265824,218.378578 Z" sketch:type="MSShapeGroup"></path>
-          <path stroke="#000" stroke-opacity="0.2" d="M62.7734176,218.378578 C68.8575658,212.191309 72.6206897,203.643676 72.6206897,194.202221 C72.6206897,175.319312 57.5681942,160.011689 39,160.011689 C20.4318058,160.011689 5.37931034,175.319312 5.37931034,194.202221 C5.37931034,203.643676 9.14243422,212.191309 15.2265824,218.378578 L15.2265824,218.378578" id="Oval-1" stroke-width="4" sketch:type="MSShapeGroup"></path>
-          <path d="M0.4875,77.5 L77.5125,77.5" id="Line" stroke="#000" stroke-opacity="0.33" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-          <path d="M0.4875,155.5 L77.5125,155.5" id="Line-2" stroke="#000" stroke-opacity="0.33" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+      <svg width="130px" height="373px" viewBox="0 0 130 373" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+        <g id="Signal-Vertical" sketch:type="MSLayerGroup" stroke="#000" stroke-opacity="0.33" stroke-width="1" fill="none" fill-rule="evenodd">
+          <rect on-swipe-down="dashboardController.resetLights()" fill="#fff" id="Signal-Frame" sketch:type="MSShapeGroup" x="0.5" y="0.5" width="128" height="371" rx="8"></rect>
+          <path on-swipe-down="dashboardController.resetLights()" on-tap="dashboardController.toggleLight('red')" ng-attr-fill="{{dashboardController.lightColors.red}}" d="M27.6697872,102.757366 C37.3513829,112.619926 50.7263829,118.720047 65.5,118.720047 C80.2736171,118.720047 93.6486171,112.619926 103.330213,102.757366 C113.011809,92.8948062 119,79.2698062 119,64.2200468 C119,34.1205279 95.0472341,9.72004676 65.5,9.72004676 C35.9527659,9.72004676 12,34.1205279 12,64.2200468 C12,79.2698062 17.9881915,92.8948062 27.6697872,102.757366 Z" id="Red-Ball" sketch:type="MSShapeGroup"></path>
+          <path d="M103.330213,102.720047 C113.011809,92.8614427 119,79.2419081 119,64.1981855 C119,34.1107403 95.0472341,9.72004676 65.5,9.72004676 C35.9527659,9.72004676 12,34.1107403 12,64.1981855 C12,79.2419081 17.9881915,92.8614427 27.6697872,102.720047 L27.6697872,102.720047" id="Red-Visor" stroke-width="8" sketch:type="MSShapeGroup"></path>
+          <path on-swipe-down="dashboardController.resetLights()" on-tap="dashboardController.toggleLight('yellow')" ng-attr-fill="{{dashboardController.lightColors.yellow}}" d="M27.6697872,225.928027 C37.3513829,235.790587 50.7263829,241.890707 65.5,241.890707 C80.2736171,241.890707 93.6486171,235.790587 103.330213,225.928027 C113.011809,216.065467 119,202.440467 119,187.390707 C119,157.291188 95.0472341,132.890707 65.5,132.890707 C35.9527659,132.890707 12,157.291188 12,187.390707 C12,202.440467 17.9881915,216.065467 27.6697872,225.928027 Z" id="Yellow-Ball" sketch:type="MSShapeGroup"></path>
+          <path d="M103.330213,225.890707 C113.011809,216.032103 119,202.412568 119,187.368846 C119,157.281401 95.0472341,132.890707 65.5,132.890707 C35.9527659,132.890707 12,157.281401 12,187.368846 C12,202.412568 17.9881915,216.032103 27.6697872,225.890707 L27.6697872,225.890707" id="Yellow-Visor" stroke-width="8" sketch:type="MSShapeGroup"></path>
+          <path on-swipe-down="dashboardController.resetLights()" on-tap="dashboardController.toggleLight('green')" ng-attr-fill="{{dashboardController.lightColors.green}}" d="M27.6697872,349.098687 C37.3513829,358.961247 50.7263829,365.061368 65.5,365.061368 C80.2736171,365.061368 93.6486171,358.961247 103.330213,349.098687 C113.011809,339.236127 119,325.611127 119,310.561368 C119,280.461849 95.0472341,256.061368 65.5,256.061368 C35.9527659,256.061368 12,280.461849 12,310.561368 C12,325.611127 17.9881915,339.236127 27.6697872,349.098687 Z" id="Green-Ball" sketch:type="MSShapeGroup"></path>
+          <path d="M103.330213,349.061368 C113.011809,339.202764 119,325.583229 119,310.539506 C119,280.452061 95.0472341,256.061368 65.5,256.061368 C35.9527659,256.061368 12,280.452061 12,310.539506 C12,325.583229 17.9881915,339.202764 27.6697872,349.061368 L27.6697872,349.061368" id="Green-Visor" stroke-width="8" sketch:type="MSShapeGroup"></path>
+          <g id="Screws" transform="translate(0.000000, 4.000000)" sketch:type="MSShapeGroup">
+            <path d="M0.5,119.5 L128.5,119.5" id="Line" stroke-linecap="square"></path>
+            <path d="M0.5,243.5 L128.5,243.5" id="Line-Copy" stroke-linecap="square"></path>
+            <circle id="Oval-4" cx="8" cy="4" r="4"></circle>
+            <path d="M6.58578644,2.58578644 L9.41421356,5.41421356" id="Line" stroke-linecap="square"></path>
+            <path d="M9.41421356,2.58578644 L6.58578644,5.41421356" id="Line-Copy-2" stroke-linecap="square"></path>
+            <circle id="Oval-4" cx="121" cy="4" r="4"></circle>
+            <path d="M119.585786,2.58578644 L122.414214,5.41421356" id="Line" stroke-linecap="square"></path>
+            <path d="M122.414214,2.58578644 L119.585786,5.41421356" id="Line-Copy-2" stroke-linecap="square"></path>
+            <circle id="Oval-4" cx="8" cy="112" r="4"></circle>
+            <path d="M6.58578644,110.585786 L9.41421356,113.414214" id="Line" stroke-linecap="square"></path>
+            <path d="M9.41421356,110.585786 L6.58578644,113.414214" id="Line-Copy-2" stroke-linecap="square"></path>
+            <circle id="Oval-4" cx="121" cy="112" r="4"></circle>
+            <path d="M119.585786,110.585786 L122.414214,113.414214" id="Line" stroke-linecap="square"></path>
+            <path d="M122.414214,110.585786 L119.585786,113.414214" id="Line-Copy-2" stroke-linecap="square"></path>
+            <circle id="Oval-4" cx="8" cy="128" r="4"></circle>
+            <path d="M6.58578644,126.585786 L9.41421356,129.414214" id="Line" stroke-linecap="square"></path>
+            <path d="M9.41421356,126.585786 L6.58578644,129.414214" id="Line-Copy-2" stroke-linecap="square"></path>
+            <circle id="Oval-4" cx="121" cy="128" r="4"></circle>
+            <path d="M119.585786,126.585786 L122.414214,129.414214" id="Line" stroke-linecap="square"></path>
+            <path d="M122.414214,126.585786 L119.585786,129.414214" id="Line-Copy-2" stroke-linecap="square"></path>
+            <circle id="Oval-4" cx="8" cy="236" r="4"></circle>
+            <path d="M6.58578644,234.585786 L9.41421356,237.414214" id="Line" stroke-linecap="square"></path>
+            <path d="M9.41421356,234.585786 L6.58578644,237.414214" id="Line-Copy-2" stroke-linecap="square"></path>
+            <circle id="Oval-4" cx="121" cy="236" r="4"></circle>
+            <path d="M119.585786,234.585786 L122.414214,237.414214" id="Line" stroke-linecap="square"></path>
+            <path d="M122.414214,234.585786 L119.585786,237.414214" id="Line-Copy-2" stroke-linecap="square"></path>
+            <circle id="Oval-4" cx="8" cy="252" r="4"></circle>
+            <path d="M6.58578644,250.585786 L9.41421356,253.414214" id="Line" stroke-linecap="square"></path>
+            <path d="M9.41421356,250.585786 L6.58578644,253.414214" id="Line-Copy-2" stroke-linecap="square"></path>
+            <circle id="Oval-4" cx="121" cy="252" r="4"></circle>
+            <path d="M119.585786,250.585786 L122.414214,253.414214" id="Line" stroke-linecap="square"></path>
+            <path d="M122.414214,250.585786 L119.585786,253.414214" id="Line-Copy-2" stroke-linecap="square"></path>
+            <circle id="Oval-4" cx="8" cy="360" r="4"></circle>
+            <path d="M6.58578644,358.585786 L9.41421356,361.414214" id="Line" stroke-linecap="square"></path>
+            <path d="M9.41421356,358.585786 L6.58578644,361.414214" id="Line-Copy-2" stroke-linecap="square"></path>
+            <circle id="Oval-4" cx="121" cy="360" r="4"></circle>
+            <path d="M119.585786,358.585786 L122.414214,361.414214" id="Line" stroke-linecap="square"></path>
+            <path d="M122.414214,358.585786 L119.585786,361.414214" id="Line-Copy-2" stroke-linecap="square"></path>
+          </g>
         </g>
       </svg>
     </div>

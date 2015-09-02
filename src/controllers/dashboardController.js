@@ -12,6 +12,8 @@ export default class DashboardController {
     assign(this, {$ionicLoading, $interval, $rootScope, $scope, $translate, ParticleService});
     ParticleService.addEventListener(s => this.updateStatusSignal(s));
 
+    this.lightColors = {red: Colors.White, yellow: Colors.White, green: Colors.White};
+
     this.device = null;
     this.connectToDevice();
     this.resetStatusSingal();
@@ -45,10 +47,10 @@ export default class DashboardController {
 
   updateStatusSignal(sender) {
     this.$scope.$apply(() => {
-      this.lightSVGColors = {
-        red: `${sender.red ? Colors.Red : Colors.Transparent}`,
-        yellow: `${sender.yellow ? Colors.Yellow : Colors.Transparent}`,
-        green: `${sender.green ? Colors.Green : Colors.Transparent}`
+      this.lightColors = {
+        red: `${sender.red ? Colors.Red : Colors.White}`,
+        yellow: `${sender.yellow ? Colors.Yellow : Colors.White}`,
+        green: `${sender.green ? Colors.Green : Colors.White}`
       };
     });
   }

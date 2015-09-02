@@ -9,7 +9,8 @@ const AppConstants = {
     Green: 'hsla(92, 98%, 49%, 1.0)',
     Red: 'hsla(4, 88%, 58%, 1.0)',
     Transparent: 'hsla(0, 0%, 0%, 0%)',
-    Yellow: 'hsla(64, 96%, 62%, 1.0)'
+    Yellow: 'hsla(64, 96%, 62%, 1.0)',
+    White: '#fff'
   },
   Translations: {
     EN: {
