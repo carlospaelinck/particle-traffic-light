@@ -41,6 +41,32 @@ private:
     }
   }
 
+  static int performSequence(String command) {
+    if (command == NULL || command.length() < 8) return -1;
+
+    int
+      redTime = command.substring(0, 1).toInt(),
+      yellowTime = command.substring(3, 4).toInt(),
+      greenTime = command.substring(6, 7).toInt();
+
+    LightFirmware::resetLights(NULL);
+
+    digitalWrite(GREEN_PIN, HIGH);
+    delay(greenTime * 1000);
+
+    digitalWrite(GREEN_PIN, LOW);
+    digitalWrite(YELLOW_PIN, HIGH);
+    delay(yellowTime * 1000);
+
+    digitalWrite(YELLOW_PIN, LOW);
+    digitalWrite(RED_PIN, HIGH);
+    delay(redTime * 1000);
+
+    digitalWrite(RED_PIN, LOW);
+
+    return 0;
+  }
+
   static int resetLights(String command) {
     digitalWrite(RED_PIN, LOW);
     digitalWrite(YELLOW_PIN, LOW);
@@ -54,6 +80,7 @@ public:
   LightFirmware() {
     Spark.function("togglelight", LightFirmware::toggleLight);
     Spark.function("resetlights", LightFirmware::resetLights);
+    Spark.function("sequence", LightFirmware::performSequence);
     Spark.variable("lightstatus", &lightStatusBitMask, INT);
   }
 
