@@ -61,35 +61,20 @@ class ParticleService {
 
   toggleLight(color) {
     if (!this.connectedDevice) return;
-
     let signal = this.lights[color];
-
-    this.connectedDevice.callFunction('togglelight', color, () => {
-      this.lights[color] = !signal;
-    });
+    this.connectedDevice.callFunction('togglelight', color, () => this.lights[color] = !signal);
   }
 
   lightSequence() {
     if (!this.connectedDevice) return;
 
-    this.connectedDevice.callFunction('sequence', 'g:t', () => {
-      this.$timeout(() => {
-        this.connectedDevice.callFunction('sequence', 'g:f y:t', () => {
-          this.$timeout(() => {
-            this.connectedDevice.callFunction('sequence', 'y:f r:t', () => {
-              this.$timeout(() => {
-                this.connectedDevice.callFunction('sequence', 'y:t', () => {
-                  this.$timeout(() => {
-                    this.connectedDevice.callFunction('sequence', 'r:f y:f', () => {
-                    });
-                  }, 1000);
-                });
-              }, 3000);
-            });
-          }, 1500);
-        });
-      }, 3000);
-    });
+    this.sequenceLight({green: 'on'}, 0)
+      .then(() => this.sequenceLight({green: 'off', yellow: 'on'}, 4))
+      .then(() => this.sequenceLight({yellow: 'off', red: 'on'}, 2))
+      .then(() => this.sequenceLight({red: 'off'}, 4))
+      .then(() => {
+        console.log('Done');
+      });
   }
 
   updateLightStatus(sender) {
@@ -131,6 +116,22 @@ class ParticleService {
     this.connectedDevice.callFunction('resetLights', null, () => {
       this.emitChange();
     });
+  }
+
+  sequenceLight(options, wait) {
+    let
+      deferred = this.$q.defer(),
+      command = '';
+
+    if (!this.connectedDevice) deferred.reject();
+
+    if (has(options, 'green')) command += `g:${options.green === 'on' ? 't' : 'f'} `;
+    if (has(options, 'yellow')) command += `y:${options.yellow === 'on' ? 't' : 'f'} `;
+    if (has(options, 'red')) command += `r:${options.red === 'on' ? 't' : 'f'} `;
+
+    this.$timeout(() => this.connectedDevice.callFunction('sequence', command, () => deferred.resolve()), wait * 1000);
+
+    return deferred.promise;
   }
 }
 
