@@ -13,8 +13,8 @@ const LightBitMask = {
 };
 
 class ParticleService {
-  constructor($rootScope, $q) {
-    assign(this, {$rootScope, $q});
+  constructor($q, $rootScope, $timeout) {
+    assign(this, {$q, $rootScope, $timeout});
     this.connectedDevice = null;
   }
 
@@ -71,6 +71,25 @@ class ParticleService {
 
   lightSequence() {
     if (!this.connectedDevice) return;
+
+    this.connectedDevice.callFunction('sequence', 'g:t', () => {
+      this.$timeout(() => {
+        this.connectedDevice.callFunction('sequence', 'g:f y:t', () => {
+          this.$timeout(() => {
+            this.connectedDevice.callFunction('sequence', 'y:f r:t', () => {
+              this.$timeout(() => {
+                this.connectedDevice.callFunction('sequence', 'y:t', () => {
+                  this.$timeout(() => {
+                    this.connectedDevice.callFunction('sequence', 'r:f y:f', () => {
+                    });
+                  }, 1000);
+                });
+              }, 3000);
+            });
+          }, 1500);
+        });
+      }, 3000);
+    });
   }
 
   updateLightStatus(sender) {

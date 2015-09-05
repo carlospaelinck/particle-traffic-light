@@ -27,4 +27,8 @@ export default class LightActionsController {
     if (!color) return;
     this.ParticleService.toggleLight(color);
   }
+
+  performSequence() {
+    this.ParticleService.lightSequence();
+  }
 }

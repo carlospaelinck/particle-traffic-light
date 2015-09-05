@@ -41,28 +41,21 @@ private:
     }
   }
 
-  static int performSequence(String command) {
-    if (command == NULL || command.length() < 8) return -1;
+  static int sequence(String command) {
+    bool
+      turn_red_on = command.indexOf("r:t") != -1,
+      turn_red_off = command.indexOf("r:f") != -1,
+      turn_yellow_on = command.indexOf("y:t") != -1,
+      turn_yellow_off = command.indexOf("y:f") != -1,
+      turn_green_on = command.indexOf("g:t") != -1,
+      turn_green_off = command.indexOf("g:f") != -1;
 
-    int
-      redTime = command.substring(0, 1).toInt(),
-      yellowTime = command.substring(3, 4).toInt(),
-      greenTime = command.substring(6, 7).toInt();
-
-    LightFirmware::resetLights(NULL);
-
-    digitalWrite(GREEN_PIN, HIGH);
-    delay(greenTime * 1000);
-
-    digitalWrite(GREEN_PIN, LOW);
-    digitalWrite(YELLOW_PIN, HIGH);
-    delay(yellowTime * 1000);
-
-    digitalWrite(YELLOW_PIN, LOW);
-    digitalWrite(RED_PIN, HIGH);
-    delay(redTime * 1000);
-
-    digitalWrite(RED_PIN, LOW);
+    if (turn_red_on) digitalWrite(RED_PIN, HIGH);
+    if (turn_red_off) digitalWrite(RED_PIN, LOW);
+    if (turn_yellow_on) digitalWrite(YELLOW_PIN, HIGH);
+    if (turn_yellow_off) digitalWrite(YELLOW_PIN, LOW);
+    if (turn_green_on) digitalWrite(GREEN_PIN, HIGH);
+    if (turn_green_off) digitalWrite(GREEN_PIN, LOW);
 
     return 0;
   }
@@ -80,7 +73,7 @@ public:
   LightFirmware() {
     Spark.function("togglelight", LightFirmware::toggleLight);
     Spark.function("resetlights", LightFirmware::resetLights);
-    Spark.function("sequence", LightFirmware::performSequence);
+    Spark.function("sequence", LightFirmware::sequence);
     Spark.variable("lightstatus", &lightStatusBitMask, INT);
   }
 
