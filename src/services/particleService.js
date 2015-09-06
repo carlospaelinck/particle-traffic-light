@@ -48,7 +48,7 @@ class ParticleService {
         this.connectedDevice = device;
         this.fetchLightStatus();
 
-        device.onEvent('event:lightChange', responseObj => this.updateLightStatus(responseObj.data));
+        device.onEvent('status_upd', responseObj => this.updateLightStatus(responseObj.data));
         deferred.resolve(device);
 
       } else {

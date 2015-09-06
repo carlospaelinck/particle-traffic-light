@@ -10,46 +10,44 @@ static const int RED_PIN = D2;
 static const int YELLOW_PIN = D1;
 static const int GREEN_PIN = D0;
 
-bool executingSequence = false;
+bool executing_sequence = false;
 
-static int red_signal = LOW;
-static int yellow_signal = LOW;
-static int green_signal = LOW;
-static uint8_t status_bit_mask = 0;
+volatile int red_signal = LOW;
+volatile int yellow_signal = LOW;
+volatile int green_signal = LOW;
+uint8_t status_bit_mask = 0;
+uint8_t previous_status_bit_mask = 0;
 
-int toggleLight(String command);
-int resetLights(String command);
+int toggle_light(String command);
+int reset_lights(String command);
 int sequence(String command);
 int sequence_uk(String command);
-void lightStatusChanged();
+void publish_status();
 
 void setup() {
   pinMode(RED_PIN, OUTPUT);
   pinMode(YELLOW_PIN, OUTPUT);
   pinMode(GREEN_PIN, OUTPUT);
 
-  Spark.function("togglelight", toggleLight);
-  Spark.function("resetlights", resetLights);
+  Spark.function("togglelight", toggle_light);
+  Spark.function("resetlights", reset_lights);
   Spark.function("sequence", sequence);
   Spark.function("sequence_uk", sequence_uk);
   Spark.variable("lightstatus", &status_bit_mask, INT);
-
-  // attachInterrupt(D0, lightStatusChanged, CHANGE);
-  // attachInterrupt(D1, lightStatusChanged, CHANGE);
-  // attachInterrupt(D2, lightStatusChanged, CHANGE);
 }
 
 void loop() {
-  status_bit_mask = ((red_signal << 1) | (yellow_signal << 2) | (green_signal << 3));
+  int status_bit_mask = ((red_signal << 1) | (yellow_signal << 2) | (green_signal << 3));
 }
 
-void lightStatusChanged() {
+void publish_status() {
+  int status_bit_mask = ((red_signal << 1) | (yellow_signal << 2) | (green_signal << 3));
   Spark.publish("status_upd", String(status_bit_mask));
 }
 
 int sequence(String command) {
-  if (executingSequence) return -1;
-  executingSequence = true;
+  if (executing_sequence) return -1;
+  executing_sequence = true;
 
   int redTime = command.substring(0, 1).toInt() ?: 1;
   int yellowTime = command.substring(2, 3).toInt() ?: 1;
@@ -57,27 +55,37 @@ int sequence(String command) {
   int repeat = command.substring(6, 7).toInt() ?: 1;
 
   for (int idx = 0; idx < repeat; idx++) {
-    digitalWrite(GREEN_PIN, HIGH);
+    green_signal = HIGH;
+    publish_status();
+    digitalWrite(GREEN_PIN, green_signal);
     delay(greenTime * 1000);
 
-    digitalWrite(GREEN_PIN, LOW);
-    digitalWrite(YELLOW_PIN, HIGH);
+    green_signal = LOW;
+    yellow_signal = HIGH;
+    publish_status();
+    digitalWrite(GREEN_PIN, green_signal);
+    digitalWrite(YELLOW_PIN, yellow_signal);
     delay(yellowTime * 1000);
 
-    digitalWrite(YELLOW_PIN, LOW);
-    digitalWrite(RED_PIN, HIGH);
+    yellow_signal = LOW;
+    red_signal = HIGH;
+    publish_status();
+    digitalWrite(YELLOW_PIN, yellow_signal);
+    digitalWrite(RED_PIN, red_signal);
     delay(redTime * 1000);
 
-    digitalWrite(RED_PIN, LOW);
+    red_signal = LOW;
+    publish_status();
+    digitalWrite(RED_PIN, red_signal);
   }
 
-  executingSequence = false;
+  executing_sequence = false;
   return 0;
 }
 
 int sequence_uk(String command) {
-  if (executingSequence) return -1;
-  executingSequence = true;
+  if (executing_sequence) return -1;
+  executing_sequence = true;
 
   int redTime = command.substring(0, 1).toInt() ?: 1;
   int yellowTime = command.substring(2, 3).toInt() ?: 1;
@@ -85,64 +93,85 @@ int sequence_uk(String command) {
   int repeat = command.substring(6, 7).toInt() ?: 1;
 
   for (int idx = 0; idx < repeat; idx++) {
-    digitalWrite(GREEN_PIN, HIGH);
+    green_signal = HIGH;
+    publish_status();
+    digitalWrite(GREEN_PIN, green_signal);
     delay(greenTime * 1000);
 
-    digitalWrite(GREEN_PIN, LOW);
-    digitalWrite(YELLOW_PIN, HIGH);
+    green_signal = LOW;
+    yellow_signal = HIGH;
+    publish_status();
+    digitalWrite(GREEN_PIN, green_signal);
+    digitalWrite(YELLOW_PIN, yellow_signal);
     delay(yellowTime * 1000);
 
-    digitalWrite(YELLOW_PIN, LOW);
-    digitalWrite(RED_PIN, HIGH);
+    yellow_signal = LOW;
+    red_signal = HIGH;
+    publish_status();
+    digitalWrite(YELLOW_PIN, yellow_signal);
+    digitalWrite(RED_PIN, red_signal);
     delay(redTime * 1000);
 
-    digitalWrite(YELLOW_PIN, HIGH);
+    yellow_signal = HIGH;
+    publish_status();
+    digitalWrite(YELLOW_PIN, yellow_signal);
     delay(yellowTime * 1000);
 
-    digitalWrite(RED_PIN, LOW);
-    digitalWrite(YELLOW_PIN, LOW);
+    yellow_signal = LOW;
+    red_signal = LOW;
+    publish_status();
+    digitalWrite(RED_PIN, red_signal);
+    digitalWrite(YELLOW_PIN, yellow_signal);
   }
 
-  executingSequence = false;
+  executing_sequence = false;
   return 0;
 }
 
-int toggleLight(String command) {
-  if (executingSequence) return -1;
-  executingSequence = true;
+int toggle_light(String command) {
+  if (executing_sequence) return -1;
+  executing_sequence = true;
 
   if (command.equals("red")) {
     red_signal = !red_signal;
+    publish_status();
     digitalWrite(RED_PIN, red_signal);
-    executingSequence = false;
+    executing_sequence = false;
     return red_signal;
 
   } else if (command.equals("yellow")) {
     yellow_signal = !yellow_signal;
+    publish_status();
     digitalWrite(YELLOW_PIN, yellow_signal);
-    executingSequence = false;
+    executing_sequence = false;
     return yellow_signal;
 
   } else if (command.equals("green")) {
     green_signal = !green_signal;
+    publish_status();
     digitalWrite(GREEN_PIN, green_signal);
-    executingSequence = false;
+    executing_sequence = false;
     return green_signal;
 
   } else {
-    executingSequence = false;
+    executing_sequence = false;
     return -1;
   }
 }
 
-int resetLights(String command) {
-  if (executingSequence) return -1;
-  executingSequence = true;
+int reset_lights(String command) {
+  if (executing_sequence) return -1;
+  executing_sequence = true;
 
-  digitalWrite(RED_PIN, LOW);
-  digitalWrite(YELLOW_PIN, LOW);
-  digitalWrite(GREEN_PIN, LOW);
+  green_signal = LOW;
+  yellow_signal = LOW;
+  red_signal = LOW;
+  publish_status();
 
-  executingSequence = false;
+  digitalWrite(RED_PIN, green_signal);
+  digitalWrite(YELLOW_PIN, yellow_signal);
+  digitalWrite(GREEN_PIN, red_signal);
+
+  executing_sequence = false;
   return 0;
 }
