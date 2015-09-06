@@ -23,13 +23,21 @@ module.exports = {
         ],
         exclude: /node_modules/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.sass$/,
+        loader: "style!css!sass"
       }
     ]
   },
 
   resolve: {
+    alias: {
+      ionic: path.join(__dirname, '/www/lib/ionic/js/ionic.bundle.js')
+    },
     root: [
-      path.join(__dirname, 'node_modules')
+      path.join(__dirname, 'node_modules'),
+      path.join(__dirname, 'www/lib')
     ],
     extensions: ['', '.js']
   },

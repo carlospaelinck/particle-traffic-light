@@ -4,6 +4,8 @@
  * Carlos Paelinck
  */
 
+import ionic from 'ionic';
+
 import AppConfiguration from './common/config';
 import AppRun from './common/run';
 import controllers from './controllers';
