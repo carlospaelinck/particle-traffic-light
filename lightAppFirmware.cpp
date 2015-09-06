@@ -6,18 +6,16 @@
 
 #include "application.h"
 
-enum LIGHT_BIT_MASK {
-  RED = 1 << 1,
-  YELLOW = 1 << 2,
-  GREEN = 1 << 3
-};
-
 static const int RED_PIN = D2;
 static const int YELLOW_PIN = D1;
 static const int GREEN_PIN = D0;
+
 bool executingSequence = false;
 
-static uint8_t lightStatusBitMask = 0;
+static int red_signal = LOW;
+static int yellow_signal = LOW;
+static int green_signal = LOW;
+static uint8_t status_bit_mask = 0;
 
 int toggleLight(String command);
 int resetLights(String command);
@@ -34,23 +32,19 @@ void setup() {
   Spark.function("resetlights", resetLights);
   Spark.function("sequence", sequence);
   Spark.function("sequence_uk", sequence_uk);
-  Spark.variable("lightstatus", &lightStatusBitMask, INT);
+  Spark.variable("lightstatus", &status_bit_mask, INT);
 
-  attachInterrupt(D0, lightStatusChanged, CHANGE);
-  attachInterrupt(D1, lightStatusChanged, CHANGE);
-  attachInterrupt(D2, lightStatusChanged, CHANGE);
+  // attachInterrupt(D0, lightStatusChanged, CHANGE);
+  // attachInterrupt(D1, lightStatusChanged, CHANGE);
+  // attachInterrupt(D2, lightStatusChanged, CHANGE);
 }
 
 void loop() {
-  while (executingSequence) {
-    Spark.process();
-  }
+  status_bit_mask = ((red_signal << 1) | (yellow_signal << 2) | (green_signal << 3));
 }
 
 void lightStatusChanged() {
-  int pinValues[3] = {digitalRead(RED_PIN), digitalRead(YELLOW_PIN), digitalRead(GREEN_PIN)};
-  lightStatusBitMask = ((pinValues[0] << 1) | (pinValues[1] << 2) | (pinValues[2] << 3));
-  Spark.publish("event:lightChange", String(lightStatusBitMask));
+  Spark.publish("status_upd", String(status_bit_mask));
 }
 
 int sequence(String command) {
@@ -118,22 +112,22 @@ int toggleLight(String command) {
   executingSequence = true;
 
   if (command.equals("red")) {
-    bool pinValue = bool(lightStatusBitMask & LIGHT_BIT_MASK::RED);
-    digitalWrite(RED_PIN, !pinValue);
+    red_signal = !red_signal;
+    digitalWrite(RED_PIN, red_signal);
     executingSequence = false;
-    return !pinValue;
+    return red_signal;
 
   } else if (command.equals("yellow")) {
-    bool pinValue = bool(lightStatusBitMask & LIGHT_BIT_MASK::YELLOW);
-    digitalWrite(YELLOW_PIN, !pinValue);
+    yellow_signal = !yellow_signal;
+    digitalWrite(YELLOW_PIN, yellow_signal);
     executingSequence = false;
-    return !pinValue;
+    return yellow_signal;
 
   } else if (command.equals("green")) {
-    bool pinValue = bool(lightStatusBitMask & LIGHT_BIT_MASK::GREEN);
-    digitalWrite(GREEN_PIN, !pinValue);
+    green_signal = !green_signal;
+    digitalWrite(GREEN_PIN, green_signal);
     executingSequence = false;
-    return !pinValue;
+    return green_signal;
 
   } else {
     executingSequence = false;
