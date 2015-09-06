@@ -59,22 +59,32 @@ class ParticleService {
     });
   }
 
-  toggleLight(color) {
+  toggleLight(color = 'yellow') {
     if (!this.connectedDevice) return;
     let signal = this.lights[color];
     this.connectedDevice.callFunction('togglelight', color, () => this.lights[color] = !signal);
   }
 
-  lightSequence() {
-    if (!this.connectedDevice) return;
+  lightSequence(options = {red: 1, yellow: 1, green: 1, repeat: 1}) {
+    let deferred = this.$q.defer();
 
-    this.sequenceLight({green: 'on'}, 0)
-      .then(() => this.sequenceLight({green: 'off', yellow: 'on'}, 4))
-      .then(() => this.sequenceLight({yellow: 'off', red: 'on'}, 2))
-      .then(() => this.sequenceLight({red: 'off'}, 4))
-      .then(() => {
-        console.log('Done');
-      });
+    if (!this.connectedDevice) {
+      return deferred.reject();
+    }
+
+    let command = `${options.red} ${options.yellow} ${options.green} ${options.repeat}`;
+
+    this.connectedDevice.callFunction(`sequence${options.uk ? '_uk' : ''}`, command, (err, responseObj) => {
+      if (!!err) {
+        deferred.reject();
+      } else if (responseObj.return_value === -1) {
+        deferred.reject();
+      } else {
+        deferred.resolve();
+      }
+    });
+
+    return deferred.promise;
   }
 
   updateLightStatus(sender) {
@@ -116,22 +126,6 @@ class ParticleService {
     this.connectedDevice.callFunction('resetLights', null, () => {
       this.emitChange();
     });
-  }
-
-  sequenceLight(options, wait) {
-    let
-      deferred = this.$q.defer(),
-      command = '';
-
-    if (!this.connectedDevice) deferred.reject();
-
-    if (has(options, 'green')) command += `g:${options.green === 'on' ? 't' : 'f'} `;
-    if (has(options, 'yellow')) command += `y:${options.yellow === 'on' ? 't' : 'f'} `;
-    if (has(options, 'red')) command += `r:${options.red === 'on' ? 't' : 'f'} `;
-
-    this.$timeout(() => this.connectedDevice.callFunction('sequence', command, () => deferred.resolve()), wait * 1000);
-
-    return deferred.promise;
   }
 }
 

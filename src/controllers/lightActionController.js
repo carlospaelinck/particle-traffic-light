@@ -29,6 +29,20 @@ export default class LightActionsController {
   }
 
   performSequence() {
-    this.ParticleService.lightSequence();
+    let sequenceOptions = {
+      red: 4,
+      yellow: 2,
+      green: 4,
+      repeat: 2,
+      uk: true
+    };
+
+    this.ParticleService.lightSequence(sequenceOptions)
+      .then(() => {
+        console.log('Yay!');
+      })
+      .catch(() => {
+        console.error('Boo!');
+      });
   }
 }
