@@ -35,3 +35,4 @@ plugins/cordova-plugin-device
 plugins/cordova-plugin-splashscreen
 plugins/com.ionic.keyboard
 plugins/cordova-plugin-whitelist
+plugins/cordova-plugin-crosswalk-webview

@@ -14,5 +14,9 @@ export default function AppRun($ionicPlatform, $interval) {
     if (window.StatusBar) {
       window.StatusBar.styleDefault();
     }
+
+    $ionicPlatform.on('offline', () => {
+      console.log('Device is offline. Boo!');
+    });
   });
 }

@@ -54,6 +54,9 @@
         },
         "com.ionic.keyboard": {
             "PACKAGE_NAME": "com.carlospaelinck.lightapp"
+        },
+        "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "com.carlospaelinck.lightapp"
         }
     },
     "dependent_plugins": {}

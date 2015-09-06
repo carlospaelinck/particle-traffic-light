@@ -8,8 +8,8 @@ import {assign, bind} from 'lodash';
 import {Colors} from '../common/constants';
 
 export default class DashboardController {
-  constructor($ionicLoading, $interval, $rootScope, $scope, $translate, ParticleService) {
-    assign(this, {$ionicLoading, $interval, $rootScope, $scope, $translate, ParticleService});
+  constructor($ionicLoading, $ionicPlatform, $interval, $rootScope, $scope, $translate, ParticleService) {
+    assign(this, {$ionicLoading, $ionicPlatform, $interval, $rootScope, $scope, $translate, ParticleService});
     ParticleService.addEventListener(s => this.updateStatusSignal(s));
 
     this.lightColors = {red: Colors.White, yellow: Colors.White, green: Colors.White};
@@ -17,9 +17,13 @@ export default class DashboardController {
     this.device = null;
     this.connectToDevice();
     this.resetStatusSingal();
+
+    this.$ionicPlatform.on('resume', () => this.connectToDevice());
   }
 
   connectToDevice() {
+    console.log('Connecting to device...');
+
     this.device = null;
 
     this.$ionicLoading.show({

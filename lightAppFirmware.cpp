@@ -37,11 +37,11 @@ void setup() {
 }
 
 void loop() {
-  int status_bit_mask = ((red_signal << 1) | (yellow_signal << 2) | (green_signal << 3));
+  status_bit_mask = ((red_signal << 1) | (yellow_signal << 2) | (green_signal << 3));
 }
 
 void publish_status() {
-  int status_bit_mask = ((red_signal << 1) | (yellow_signal << 2) | (green_signal << 3));
+  status_bit_mask = ((red_signal << 1) | (yellow_signal << 2) | (green_signal << 3));
   Spark.publish("status_upd", String(status_bit_mask));
 }
 
