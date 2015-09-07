@@ -38,12 +38,30 @@ export default function AppConfiguration($stateProvider, $urlRouterProvider, $tr
           }
         }
       })
-      .state('tab.lightActions', {
-        url: '/lightActions',
+      .state('tab.ukSequence', {
+        url: '/ukSequence',
         views: {
           'tab-action' : {
-            controller: 'LightActionsController as lightActionsController',
-            templateUrl: 'templates/tab.action.light.html'
+            controller: 'UkSequenceController as ukSequenceController',
+            templateUrl: 'templates/tab.action.uk.sequence.html'
+          }
+        }
+      })
+      .state('tab.usSequence', {
+        url: '/usSequence',
+        views: {
+          'tab-action' : {
+            controller: 'UsSequenceController as usSequenceController',
+            templateUrl: 'templates/tab.action.us.sequence.html'
+          }
+        }
+      })
+      .state('tab.about', {
+        url: '/about',
+        views: {
+          'tab-about' : {
+            controller: 'AboutController as aboutController',
+            templateUrl: 'templates/tab.about.html'
           }
         }
       });

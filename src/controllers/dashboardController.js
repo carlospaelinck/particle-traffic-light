@@ -22,7 +22,7 @@ export default class DashboardController {
   }
 
   connectToDevice() {
-    console.log('Connecting to device...');
+    // if (!!this.device && this.device)
 
     this.device = null;
 
@@ -30,15 +30,10 @@ export default class DashboardController {
       template: `{{'messageConnecting' | translate}}`
     });
 
-    this.ParticleService.login().then(() => {
-      return this.ParticleService.connectToDevice();
-
-    }).then(device => {
-      this.device = device;
-
-    }).finally(() => {
-      this.$ionicLoading.hide();
-    });
+    this.ParticleService.login()
+      .then(() => this.ParticleService.connectToDevice())
+      .then(device => this.device = device)
+      .finally(() => this.$ionicLoading.hide());
   }
 
   resetStatusSingal() {

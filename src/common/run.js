@@ -12,7 +12,7 @@ export default function AppRun($ionicPlatform, $interval) {
     }
 
     if (window.StatusBar) {
-      window.StatusBar.styleDefault();
+      window.StatusBar.styleLightContent();
     }
 
     $ionicPlatform.on('offline', () => {

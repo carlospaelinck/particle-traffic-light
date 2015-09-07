@@ -19,15 +19,23 @@ const AppConstants = {
       messageConnecting: 'Connecting to Light',
       messageNotConnected: 'Not Connected',
       titleDashboard: 'Dashboard',
-      titleAction: 'Action'
+      titleAction: 'Actions',
+      ukSequence: 'UK Sequence',
+      ukSequenceDescription: 'Four-phase with red-yellow',
+      usSequence: 'US Sequence',
+      usSequenceDescription: 'Standard three-phase'
     },
     ES: {
-      buttonConnectTo: 'Conectar a la Luz',
+      buttonConnectTo: 'Conectar a la luz',
       messageConnected: 'Conectado a',
-      messageConnecting: 'Connecting to Light',
-      messageNotConnected: 'Not Connected',
+      messageConnecting: 'Conectando a la luz',
+      messageNotConnected: 'No está conectando',
       titleDashboard: 'Tabla de Estado',
-      titleAction: 'Acción'
+      titleAction: 'Acciónes',
+      ukSequence: 'Secuencia de Reino Unido',
+      ukSequenceDescription: 'Fase cuatro con rojo-amarillo',
+      usSequence: 'Secuencia de EEUU',
+      usSequenceDescription: 'Estándar trifásico'
     }
   }
 };
