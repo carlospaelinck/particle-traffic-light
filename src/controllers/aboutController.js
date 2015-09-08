@@ -7,7 +7,13 @@
 import {assign} from 'lodash';
 
 export default class AboutController {
-  constructor($scope) {
-    assign(this, {$scope});
+  constructor($scope, $translate) {
+    assign(this, {$scope, $translate});
+
+    this.currentLanguage = $translate.use();
+  }
+
+  changeLanguage(language) {
+    this.$translate.use(language);
   }
 }
