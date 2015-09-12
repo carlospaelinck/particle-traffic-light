@@ -15,6 +15,8 @@ const AppConstants = {
   Translations: {
     EN: {
       buttonConnectTo: 'Connect to Light',
+      languageEnglish: 'English',
+      languageSpanish: 'Spanish',
       messageConnected: 'Connected to',
       messageConnecting: 'Connecting to Light',
       messageNotConnected: 'Not Connected',
@@ -28,6 +30,8 @@ const AppConstants = {
     },
     ES: {
       buttonConnectTo: 'Conectar a la luz',
+      languageEnglish: 'Inglés',
+      languageSpanish: 'Español',
       messageConnected: 'Conectado a',
       messageConnecting: 'Conectando a la luz',
       messageNotConnected: 'No está conectando',

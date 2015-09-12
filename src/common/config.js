@@ -11,7 +11,7 @@ export default function AppConfiguration($stateProvider, $urlRouterProvider, $tr
     .translations('en', Translations.EN)
     .translations('es', Translations.ES)
     .preferredLanguage('en')
-    .useSanitizeValueStrategy('sanitize');
+    .useSanitizeValueStrategy('escape');
 
   $stateProvider
     .state('tab', {

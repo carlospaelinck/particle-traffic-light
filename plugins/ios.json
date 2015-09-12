@@ -35,6 +35,10 @@
                         {
                             "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"WKWebViewPolyfill\"><param name=\"ios-package\" value=\"WKWebViewPolyfill\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -42,6 +46,36 @@
             "framework": {
                 "parents": {
                     "CoreGraphics.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ],
+                    "libz.dylib": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ],
+                    "CFNetwork.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ],
+                    "SystemConfiguration.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ],
+                    "MobileCoreServices.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ],
+                    "WebKit.framework": [
                         {
                             "xml": false,
                             "count": 1
@@ -67,12 +101,16 @@
         "com.ionic.keyboard": {
             "PACKAGE_NAME": "com.carlospaelinck.lightapp"
         },
-        "cordova-plugin-crosswalk-webview": {
+        "org.apache.cordova.statusbar": {
             "PACKAGE_NAME": "com.carlospaelinck.lightapp"
         },
-        "org.apache.cordova.statusbar": {
+        "com.telerik.plugins.wkwebview": {
             "PACKAGE_NAME": "com.carlospaelinck.lightapp"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-webserver": {
+            "PACKAGE_NAME": "com.carlospaelinck.lightapp"
+        }
+    }
 }

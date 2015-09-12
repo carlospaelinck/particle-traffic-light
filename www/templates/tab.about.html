@@ -1,5 +1,28 @@
 <ion-view view-title="{{'titleAbout' | translate}}">
   <ion-content>
-    <!-- <button ng-click="aboutController." -->
+    <ul class="list list-inset">
+      <label class="item item-radio">
+        <input type="radio"
+          name="language-group"
+          ng-model="aboutController.currentLanguage"
+          ng-change="aboutController.changeLanguage()"
+          value="en">
+        <div class="item-content">
+          {{'languageEnglish' | translate}}
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+      </label>
+      <label class="item item-radio">
+        <input type="radio"
+          name="language-group"
+          ng-model="aboutController.currentLanguage"
+          ng-change="aboutController.changeLanguage()"
+          value="es">
+        <div class="item-content">
+          {{'languageSpanish' | translate}}
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+      </label>
+    </ul>
   </ion-content>
 </ion-view>
