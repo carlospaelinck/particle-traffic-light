@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col">
+    {{'red' | translate}}
+    {{ctrl.sequenceOptions.red}}
+  </div>
+  <div class="col">
+    {{'yellow' | translate}}
+    {{ctrl.sequenceOptions.yellow}}
+  </div>
+  <div class="col">
+    {{'green' | translate}}
+    {{ctrl.sequenceOptions.green}}
+  </div>
+  <div class="col">
+    {{'repeat' | translate}}
+    {{ctrl.sequenceOptions.repeat}}
+  </div>
+</div>
+<div class="list list-inset">
+  <div class="item item-divider">
+    {{'lightTimes' | translate}}
+  </div>
+  <div class="item range range-assertive">
+    <i class="icon ion-ios-timer-outline"></i>
+    <input type="range" name="volume" min="2" max="9" ng-model="ctrl.sequenceOptions.red">
+    <i class="icon ion-ios-timer"></i>
+  </div>
+  <div class="item range range-energized">
+    <i class="icon ion-ios-timer-outline"></i>
+    <input type="range" name="volume" min="1" max="5" ng-model="ctrl.sequenceOptions.yellow">
+    <i class="icon ion-ios-timer"></i>
+  </div>
+  <div class="item range range-balanced">
+    <i class="icon ion-ios-timer-outline"></i>
+    <input type="range" name="volume" min="2" max="9" ng-model="ctrl.sequenceOptions.green">
+    <i class="icon ion-ios-timer"></i>
+  </div>
+  <div class="item item-divider">
+    {{'repeat' | translate}}
+  </div>
+  <div class="item range">
+    <i class="icon ion-ios-infinite-outline"></i>
+    <input type="range" name="volume" min="1" max="4" ng-model="ctrl.sequenceOptions.repeat">
+    <i class="icon ion-ios-infinite"></i>
+  </div>
+</div>
+<button class="button button-full button-positive" ng-click="ctrl.performSequence()">
+  {{'executeSequence' | translate}}
+</div>

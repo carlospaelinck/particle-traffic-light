@@ -15,33 +15,45 @@ const AppConstants = {
   Translations: {
     EN: {
       buttonConnectTo: 'Connect to Light',
+      executeSequence: 'Perform Sequence',
+      green: 'Green',
       languageEnglish: 'English',
       languageSpanish: 'Spanish',
+      lightTimes: 'Light Timings',
       messageConnected: 'Connected to',
       messageConnecting: 'Connecting to Light',
       messageNotConnected: 'Not Connected',
+      red: 'Red',
+      repeat: 'Repeat',
       titleAbout: 'About',
       titleAction: 'Actions',
       titleDashboard: 'Dashboard',
       ukSequence: 'UK Sequence',
       ukSequenceDescription: 'Four-phase with red-yellow',
       usSequence: 'US Sequence',
-      usSequenceDescription: 'Standard three-phase'
+      usSequenceDescription: 'Standard three-phase',
+      yellow: 'Yellow'
     },
     ES: {
       buttonConnectTo: 'Conectar a la luz',
+      executeSequence: 'Realice Secuencia',
+      green: 'Verde',
       languageEnglish: 'Inglés',
       languageSpanish: 'Español',
+      lightTimes: 'Tiempos de Luz',
       messageConnected: 'Conectado a',
       messageConnecting: 'Conectando a la luz',
       messageNotConnected: 'No está conectando',
+      red: 'Rojo',
+      repeat: 'Repetición',
       titleAbout: 'Acerca de',
       titleAction: 'Acciónes',
       titleDashboard: 'Tabla de Estado',
       ukSequence: 'Secuencia de Reino Unido',
       ukSequenceDescription: 'Fase cuatro con rojo-amarillo',
       usSequence: 'Secuencia de EEUU',
-      usSequenceDescription: 'Estándar trifásico'
+      usSequenceDescription: 'Estándar trifásico',
+      yellow: 'Amarillo'
     }
   }
 };
