@@ -18,16 +18,17 @@ export default function ControlsDirective() {
         repeat: 1
       };
 
+      this.performBtnDisabled = false;
+
       this.performSequence = () => {
         let sequenceOptions = _.extend(this.sequenceOptions, {uk: this.region === 'uk'});
+        this.performBtnDisabled = true;
 
         ParticleService.lightSequence(sequenceOptions)
-          .then(() => {
-            console.log('Yay!');
-          })
           .catch(() => {
-            console.error('Boo!');
-          });
+            console.log('Boo!');
+          })
+          .finally(() => this.performBtnDisabled = false);
       };
     },
 

@@ -1,19 +1,35 @@
 <div class="row">
   <div class="col">
-    {{'red' | translate}}
-    {{ctrl.sequenceOptions.red}}
+    <div class="action-data">
+      <div class="action-data-value">
+        {{ctrl.sequenceOptions.red}}<span class="unit">s</span>
+      </div>
+      <div class="action-data-label light-text">{{'red' | translate}}</div>
+    </div>
   </div>
   <div class="col">
-    {{'yellow' | translate}}
-    {{ctrl.sequenceOptions.yellow}}
+    <div class="action-data">
+      <div class="action-data-value">
+        {{ctrl.sequenceOptions.yellow}}<span class="unit">s</span>
+      </div>
+      <div class="action-data-label">{{'yellow' | translate}}</div>
+    </div>
   </div>
   <div class="col">
-    {{'green' | translate}}
-    {{ctrl.sequenceOptions.green}}
+    <div class="action-data">
+      <div class="action-data-value">
+        {{ctrl.sequenceOptions.green}}<span class="unit">s</span>
+      </div>
+      <div class="action-data-label">{{'green' | translate}}</div>
+    </div>
   </div>
   <div class="col">
-    {{'repeat' | translate}}
-    {{ctrl.sequenceOptions.repeat}}
+    <div class="action-data">
+      <div class="action-data-value">
+        {{ctrl.sequenceOptions.repeat}}<span class="unit">&times;</span>
+      </div>
+      <div class="action-data-label">{{'repeat' | translate}}</div>
+    </div>
   </div>
 </div>
 <div class="list list-inset">
@@ -44,6 +60,6 @@
     <i class="icon ion-ios-infinite"></i>
   </div>
 </div>
-<button class="button button-full button-positive" ng-click="ctrl.performSequence()">
+<button class="button button-full button-positive" ng-disabled="ctrl.performBtnDisabled" ng-click="ctrl.performSequence()">
   {{'executeSequence' | translate}}
 </div>
