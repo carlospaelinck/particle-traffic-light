@@ -37,8 +37,7 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "com.ionic.keyboard",
-    "org.apache.cordova.statusbar",
-    "com.telerik.plugins.wkwebview"
+    "org.apache.cordova.statusbar"
   ],
   "cordovaPlatforms": [
     "ios",

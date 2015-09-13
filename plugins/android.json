@@ -51,9 +51,6 @@
         },
         "org.apache.cordova.statusbar": {
             "PACKAGE_NAME": "com.carlospaelinck.lightapp"
-        },
-        "com.telerik.plugins.wkwebview": {
-            "PACKAGE_NAME": "com.carlospaelinck.lightapp"
         }
     },
     "dependent_plugins": {}
