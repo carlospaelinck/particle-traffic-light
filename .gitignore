@@ -36,4 +36,6 @@ plugins/cordova-plugin-splashscreen
 plugins/com.ionic.keyboard
 plugins/cordova-plugin-whitelist
 plugins/cordova-plugin-crosswalk-webview
-plugins/org.apache.cordova.statusbar/
+plugins/org.apache.cordova.statusbar
+plugins/com.telerik.plugins.wkwebview
+plugins/cordova-plugin-webserver
