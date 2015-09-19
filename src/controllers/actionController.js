@@ -7,8 +7,8 @@
 import {assign} from 'lodash';
 
 export default class ActionController {
-  constructor(ParticleService) {
-    assign(this, {ParticleService});
+  constructor($ionicLoading, ParticleService) {
+    assign(this, {$ionicLoading, ParticleService});
 
     if (ionic.Platform.isAndroid()) {
       this.icons = {
@@ -20,8 +20,17 @@ export default class ActionController {
       };
     }
 
-    // if (ParticleService.isConnected()) {
-    //   console.log(ParticleService.connectedDevice);
-    // }
+    this.actionsDisabled = true;
+
+    if (!ParticleService.isConnected()) {
+      this.$ionicLoading.show({
+        template: `{{'messageConnecting' | translate}}`
+      });
+
+      this.ParticleService.login()
+        .then(() => this.ParticleService.connectToDevice())
+        .then(() => this.actionsDisabled = false)
+        .finally(() => this.$ionicLoading.hide());
+    }
   }
 }

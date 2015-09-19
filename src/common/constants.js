@@ -14,6 +14,7 @@ const AppConstants = {
   },
   Translations: {
     EN: {
+      aboutCopy: 'Light App was developed by Carlos Paelinck and Mike Kelly.',
       buttonConnectTo: 'Connect to Light',
       executeSequence: 'Perform Sequence',
       green: 'Green',
@@ -32,9 +33,11 @@ const AppConstants = {
       ukSequenceDescription: 'Four-phase with red-yellow',
       usSequence: 'US Sequence',
       usSequenceDescription: 'Standard three-phase',
+      version: 'Version',
       yellow: 'Yellow'
     },
     ES: {
+      aboutCopy: 'Light App fue desarrollado por Carlos Paelinck y Mike Kelly.',
       buttonConnectTo: 'Conectar a la luz',
       executeSequence: 'Realice Secuencia',
       green: 'Verde',
@@ -53,6 +56,7 @@ const AppConstants = {
       ukSequenceDescription: 'Fase cuatro con rojo-amarillo',
       usSequence: 'Secuencia de EEUU',
       usSequenceDescription: 'Estándar trifásico',
+      version: 'Versión',
       yellow: 'Amarillo'
     }
   }

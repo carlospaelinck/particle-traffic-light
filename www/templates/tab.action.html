@@ -1,6 +1,6 @@
 <ion-view view-title="{{'titleAction' | translate}}">
   <ion-content>
-    <ion-list>
+    <ion-list ng-show="!actionController.actionsDisabled">
       <a class="item item-icon-right item-avatar" ui-sref="tab.usSequence()" href="#">
         <img src="img/us.svg">
         <h2>{{'usSequence' | translate}}</h2>

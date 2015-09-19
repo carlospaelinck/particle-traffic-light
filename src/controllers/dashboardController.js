@@ -22,7 +22,10 @@ export default class DashboardController {
   }
 
   connectToDevice() {
-    // if (!!this.device && this.device)
+    if (!!this.ParticleService.isConnected()) {
+      this.device = this.ParticleService.connectedDevice;
+      return;
+    }
 
     this.device = null;
 
