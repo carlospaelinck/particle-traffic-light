@@ -31,6 +31,9 @@ export default class ActionController {
         .then(() => this.ParticleService.connectToDevice())
         .then(() => this.actionsDisabled = false)
         .finally(() => this.$ionicLoading.hide());
+
+    } else {
+      this.actionsDisabled = false;
     }
   }
 }
